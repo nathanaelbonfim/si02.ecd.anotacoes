@@ -1,5 +1,6 @@
-#include "ListaDinEncad.h"
+#include <stdlib.h>
 #include <malloc.h>
+#include "./ListaDinEncad.h"
 
 struct elemento {
     struct aluno dados;
@@ -15,8 +16,7 @@ int main(void) {
     libera_lista(li);
 
     struct aluno dados_aluno;
-
-    int x = insere_lista_inicio(li, dados_aluno);
+    int x = remove_lista_final(li);
 }
 
 Lista* cria_lista() {
@@ -126,4 +126,45 @@ int insere_lista_ordenada(Lista* li, struct aluno al) {
 
         return 1;
     }
+}
+
+int remove_lista_final(Lista* li) {
+    if (li == NULL) return 0;
+    if ((*li) == NULL) return 0;
+
+    Elem *ant, *no = *li;
+    while (no->prox != NULL) {
+        ant = no;
+        no = no->prox;
+    }
+
+    if (no == (*li))
+        *li = no->prox;
+    else
+        ant->prox = no->prox;
+
+    free(no);
+
+    return 1;
+}
+
+int remove_lista(Lista* li, int mat) {
+    if (li == NULL) return 0;
+
+    Elem *ant, *no = *li;
+    while (no != NULL &&
+            no->dados.matricula != mat) {
+        ant = no;
+        no = no->prox;
+    }
+
+    if (no == NULL) return 0;
+
+    if (no == *li) 
+        *li = no->prox;
+    else
+        ant->prox = no->prox;
+
+    free(no);
+    return 1;
 }

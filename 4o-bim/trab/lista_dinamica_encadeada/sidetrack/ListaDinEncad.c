@@ -2,7 +2,7 @@
 #include <malloc.h>
 
 struct elemento {
-    struct aluno dados;
+    struct pagina dados;
     struct elemento *prox;
 };
 
@@ -13,7 +13,10 @@ int main(void) {
 
     li = cria_lista();
     libera_lista(li);
-    int x = tamanho_lista(li);
+
+    struct pagina dados_pagina;
+
+    int x = insere_lista_inicio(li, dados_pagina);
 }
 
 Lista* cria_lista() {
@@ -61,3 +64,36 @@ int lista_vazia(Lista* li) {
 
     return 0;
 }
+
+int insere_lista_inicio(Lista* li, struct pagina al) {
+    if (li = NULL) return 0; // Lista inexistente
+    Elem* no = (Elem*)malloc(sizeof(Elem));
+
+    if (no == NULL) return 0; 
+
+    no->dados = al;
+    no->prox = (*li);
+    *li = no;
+
+    return 1;
+}
+
+int insere_lista_final(Lista* li, struct pagina al) {
+    if (li == NULL) return 0;
+
+    Elem* no = (Elem*)malloc(sizeof(Elem));
+    if (no == NULL) return 0;
+    no->dados = al;
+    no->prox = NULL;
+
+    if ((*li) == NULL) {
+        Elem *aux = *li;
+        while (aux->prox != NULL) {
+            aux = aux->prox;
+        }
+        aux->prox = no;
+    }
+
+    return 1;
+}
+

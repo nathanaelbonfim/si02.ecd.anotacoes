@@ -3,10 +3,10 @@
 #define QUANTIDADE_POSICOES 5
 
 int main(void) {
-    int a[5], n = 5, troca = 1, ut = 0, c, aux, m = n - 1;
+    int a[QUANTIDADE_POSICOES], n = QUANTIDADE_POSICOES, troca = 1, ut = 0, c, aux, m = n - 1;
     int passos = 0;
 
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < QUANTIDADE_POSICOES; i++) {
         printf("Digite um valor para a posição %d: ", i);
         scanf("%d", &a[i]);
     }
@@ -29,7 +29,7 @@ int main(void) {
     }
 
     printf("--------------\n");
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < QUANTIDADE_POSICOES; i++) {
         printf("Posição %d: %d\n", i, a[i]);
     }
     printf("--------------\n");

@@ -16,7 +16,7 @@ int main(void) {
     libera_lista(li);
 
     struct aluno dados_aluno;
-    int x = remove_lista_final(li);
+    int x = insere_lista_inicio(li, dados_aluno);
 }
 
 Lista* cria_lista() {
@@ -167,4 +167,37 @@ int remove_lista(Lista* li, int mat) {
 
     free(no);
     return 1;
+}
+
+int consulta_lista_posicion(Lista* li, int pos, struct aluno *al) {
+    if (li == NULL) return 0;
+    Elem *no = *li;
+    int i = 1;
+    while (no != NULL && i < pos) {
+        no = no->prox;
+        i++;
+    }
+
+    if (no == NULL) {
+        return 0;
+    } else {
+        al = no->dados;
+        return 1;
+    }
+}
+
+int conulta_lista_match(Lista* li, int mat, struct aluno al) {
+    if (li == NULL) return 0;
+    Elem *no = *li;
+
+    while (no != NULL && no->dados.matricula != mat) {
+        no = no->prox;
+    }
+
+    if (no == NULL) {
+        return 0;
+    } else {
+        al = no->dados;
+        return 1;
+    }
 }
